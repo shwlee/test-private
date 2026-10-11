@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
+    <PackageReference Include="xunit" Version="2.4.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Net10Sample\Net10Sample.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="PriceCalculatorSourceGeneratorTests.TestData.cs">
+      <DependentUpon>PriceCalculatorSourceGeneratorTests.cs</DependentUpon>
+    </Compile>
+    <Compile Update="PriceCalculatorReflectionTests.TestData.cs">
+      <DependentUpon>PriceCalculatorReflectionTests.cs</DependentUpon>
+    </Compile>
+    <Compile Update="PriceCalculatorUnsafeAccessorTests.TestData.cs">
+      <DependentUpon>PriceCalculatorUnsafeAccessorTests.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug' Or '$(Configuration)' == 'Test'">
+    <DefineConstants>$(DefineConstants);TEST_EXPOSE</DefineConstants>
+  </PropertyGroup>
+</Project>
+
+
+
