@@ -7,8 +7,21 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+    <ItemGroup Condition="'$(Configuration)' == 'Debug' Or '$(Configuration)' == 'Test'">
+        <ProjectReference
+            Include="..\Net10Sample.TestGenerator\Net10Sample.TestGenerator.csproj"
+            OutputItemType="Analyzer"
+            ReferenceOutputAssembly="false" />
+    </ItemGroup>
+
+	<ItemGroup>		
+		<ProjectReference Include="..\Net10Sample.TestProvider\Net10Sample.TestProvider.csproj" />
+	</ItemGroup>
+
 	<ItemGroup>
-		<ProjectReference Include="..\Net10Sample.TestGenerator\Net10Sample.TestGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false"  />
+	  <Compile Update="PriceCalculator.Nested.cs">
+	    <DependentUpon>PriceCalculator.cs</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<PropertyGroup Condition="'$(Configuration)' == 'Debug' Or '$(Configuration)' == 'Test'">

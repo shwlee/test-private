@@ -1,11 +1,11 @@
-﻿namespace Net10Sample;
+﻿using Net10Sample.TestProvider;
+
+namespace Net10Sample;
 
 public partial class PriceCalculator
 {
     public decimal CalculateFinalPrice(decimal price, decimal discountPercent)
-    {
-        return price - CalculateDiscountAmount(price, discountPercent);
-    }
+        => price - CalculateDiscountAmount(price, discountPercent);
 
     [TestExpose]
     private decimal CalculateDiscountAmount(decimal price, decimal discountPercent)
@@ -23,4 +23,3 @@ public partial class PriceCalculator
         return decimal.Round(price * discountPercent / 100m, 2, MidpointRounding.AwayFromZero);
     }
 }
-
